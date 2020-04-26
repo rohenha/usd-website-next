@@ -12,12 +12,12 @@ gem "middleman-livereload", "~> 3.4.3"
 gem 'mime-types'
 gem 'sass', '~> 3.4'
 gem 'sass-globbing', '~> 1.1'
-gem 'middleman-sprockets'
+# gem 'middleman-sprockets'
 gem 'middleman-gdpr'
 gem 'redcarpet', '~> 3.3', '>= 3.3.3'
 gem 'nokogiri'
 gem 'rspec'
-# gem 'sprockets', '~> 3.0'
+gem 'sprockets', '~> 3.0'
 # gem 'mini_racer' # faster JS compiles
 # gem 'oj' # faster JSON parser and object serializer
 # gem 'middleman-google-analytics', '~> 3.0'
