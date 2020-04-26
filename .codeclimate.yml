@@ -1,0 +1,18 @@
+version: "2"
+plugins:
+  sass-lint:
+    enabled: true
+    rules:
+      class-name-format:
+        - 1
+        - convention: 'hyphenatedbem'
+  eslint:
+    enabled: true
+    channel: "eslint-5"
+    config:
+      config: .eslintrc.yml
+exclude_patterns:
+  - "node_modules/**"
+  - "db/**"
+  - "config/**"
+  - "test/**"

@@ -1,0 +1,19 @@
+{
+    "exclude": [],
+    "quotes": "single",
+    "element-case": "lower",
+    "leading-zero": false,
+    "eof-newline": false,
+    "color-case": "upper",
+    "space-after-colon": " ",
+    "space-after-combinator": " ",
+    "color-shorthand": true,
+    "strip-spaces": true,
+    "tab-size": true,
+    "unitless-zero": true,
+    "remove-empty-rulesets": true,
+    "vendor-prefix-align": true,
+    "always-semicolon": false,
+    "sort-order-fallback": "abc",
+    "sort-order": ["..."]
+}
