@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     };
   
-  }
+}
 
 export default function Boutique({ products }: IBoutiquePage) {
     return <div>{JSON.stringify(products, null, 2)}</div>;
