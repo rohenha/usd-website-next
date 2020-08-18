@@ -1,4 +1,4 @@
-import { queryContent } from "Lib";
+import { getDataMenu, queryContent } from "Lib";
 import { GetStaticProps } from "next";
 import { IEquipesPage } from "Interfaces";
 
@@ -9,6 +9,7 @@ export const getStaticProps: GetStaticProps = async () => {
             slug
             category {
                 name
+                id
             }
             managers {
                 name
@@ -17,8 +18,10 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     }`;
     const data = await queryContent(query, 10);
+    const menu = await getDataMenu();
     return {
         props: {
+            menu,
             teams: data.allTeams
         }
     };

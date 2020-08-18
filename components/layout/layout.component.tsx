@@ -6,7 +6,7 @@ export class LayoutComponent extends React.Component<ILayoutComponentProps, ILay
     public render(): React.ReactElement<any> {
         return (
             <React.Fragment>
-                <HeaderComponent teams={this.props.teams} />
+                <HeaderComponent menu={this.props.menu} />
                 <main>
                     {this.props.children}
                 </main>

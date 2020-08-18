@@ -1,4 +1,4 @@
-import { queryContent } from "Lib";
+import { getDataMenu, queryContent } from "Lib";
 import { GetStaticProps } from "next";
 import { IMediasPage } from "Interfaces";
 
@@ -9,11 +9,16 @@ export const getStaticProps: GetStaticProps = async () => {
         allTeams(filter: {_status: {eq: published}}) {
             name
             slug
+            category {
+                id
+            }
         }
     }`;
     const data = await queryContent(query, 10);
+    const menu = await getDataMenu();
     return {
         props: { 
+            menu,
             teams: data.allTeams
         }
     };

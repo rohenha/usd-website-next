@@ -1,4 +1,4 @@
-import { queryContent } from "Lib";
+import { getDataMenu, queryContent } from "Lib";
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IEquipePage } from "Interfaces";
 
@@ -8,6 +8,9 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
         allTeams(filter: {_status: {eq: published}}) {
             name
             slug
+            category {
+                id
+            }
         }
         team(filter: {_status: {eq: published}, slug: {eq: "` + ctx.params?.name + `"}}) {
             name
@@ -21,8 +24,10 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
         }
     }`;
     const data = await queryContent(query, 10);
+    const menu = await getDataMenu();
     return {
         props: {
+            menu,
             team: data.team,
             teams: data.allTeams
         }

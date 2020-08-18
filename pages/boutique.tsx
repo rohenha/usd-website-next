@@ -1,4 +1,4 @@
-import { queryContent } from "Lib";
+import { getDataMenu, queryContent } from "Lib";
 import { GetStaticProps } from "next";
 import { IBoutiquePage } from "Interfaces";
 
@@ -8,6 +8,9 @@ export const getStaticProps: GetStaticProps = async () => {
         allTeams(filter: {_status: {eq: published}}) {
             name
             slug
+            category {
+                id
+            }
         }
         allProduits {
             name
@@ -16,8 +19,10 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     }`;
     const data = await queryContent(query, 10);
+    const menu = await getDataMenu();
     return {
         props: {
+            menu,
             products: data.allProduits,
             teams: data.allTeams
         }

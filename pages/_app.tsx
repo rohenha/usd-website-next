@@ -6,7 +6,7 @@ import '../styles/site.sass'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-    <LayoutComponent teams={pageProps.teams}>
+    <LayoutComponent menu={pageProps.menu}>
         <Component {...pageProps} />
     </LayoutComponent>
     );

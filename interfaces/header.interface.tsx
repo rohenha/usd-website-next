@@ -1,6 +1,9 @@
-import { ITeamMenu, ITeam } from 'Interfaces';
+import { ICategory, ITeamMenu } from 'Interfaces';
 export interface IHeaderComponentProps {
-    teams: ITeam[] | ITeamMenu[]
+    menu: {
+        categories: ICategory[],
+        teams: ITeamMenu[]
+    }
 }
 
 export interface IHeaderComponentState {

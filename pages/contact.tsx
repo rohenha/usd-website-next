@@ -1,4 +1,4 @@
-import { queryContent } from "Lib";
+import { getDataMenu, queryContent } from "Lib";
 import { GetStaticProps } from "next";
 import { IContactPage } from "Interfaces";
 
@@ -7,6 +7,9 @@ export const getStaticProps: GetStaticProps = async () => {
         allTeams(filter: {_status: {eq: published}}) {
             name
             slug
+            category {
+                id
+            }
         }
         contact {
             email
@@ -29,8 +32,10 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     }`;
     const data = await queryContent(query, 10);
+    const menu = await getDataMenu();
     return {
         props: {
+            menu,
             contact: data.contact,
             teams: data.allTeams
         }
