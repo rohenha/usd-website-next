@@ -1,36 +1,30 @@
-import { queryContent } from "@lib";
+import { queryContent } from "Lib";
+import { GetStaticProps } from "next";
+import { IBoutiquePage } from "Interfaces";
 
-export async function getStaticProps() {
+
+export const getStaticProps: GetStaticProps = async () => {
     const query = `query BoutiquePage {
-        contact {
-            email
-            president {
-                email
-                name
-                phone
-                surname
-            }
-            presidentJeunes {
-                email
-                name
-                surname
-                phone
-            }
-            adresse {
-                latitude
-                longitude
-            }
+        allTeams(filter: {_status: {eq: published}}) {
+            name
+            slug
+        }
+        allProduits {
+            name
+            price
+            size
         }
     }`;
     const data = await queryContent(query, 10);
     return {
         props: {
-            data
+            products: data.allProduits,
+            teams: data.allTeams
         }
     };
   
   }
 
-export default function Boutique({ data }: { data: any }) {
-    return <div>{JSON.stringify(data, null, 2)}</div>;
+export default function Boutique({ products }: IBoutiquePage) {
+    return <div>{JSON.stringify(products, null, 2)}</div>;
 }

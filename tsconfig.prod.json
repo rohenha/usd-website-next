@@ -18,13 +18,14 @@
     "noUnusedLocals": true,
     "baseUrl": "./",
     "paths": {
-      "@components": [ "components/index.tsx" ],
-      "@lib": [ "lib/index.tsx" ]
+      "Interfaces": [ "/interfaces/index.tsx" ],
+      "Components": [ "/components/index.tsx" ],
+      "Lib": [ "/lib/index.tsx" ]
     }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
+    "**/*.ts",
+    "**/*.tsx",
   ],
   "exclude": [
     "node_modules",

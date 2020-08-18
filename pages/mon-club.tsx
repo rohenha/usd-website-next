@@ -1,28 +1,23 @@
-import { queryContent } from "@lib";
+import { queryContent } from "Lib";
+import { GetStaticProps } from "next";
+import { IMonClubPage } from "Interfaces";
 
 
-
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
     const query = `query ClubPage {
-        team(filter: {_status: {eq: published}}) {
+        allTeams(filter: {_status: {eq: published}}) {
             name
-            category {
-                name
-            }
-            managers {
-                name
-                surname
-            }
+            slug
         }
     }`;
     const data = await queryContent(query, 10);
     return {
         props: {
-            data
+            teams: data.allTeams
         }
     };
 }
 
-export default function MonClub({ data }: { data: any }) {
-  return (<div>{JSON.stringify(data, null, 2)}</div>);
+export default function MonClub({ teams }: IMonClubPage) {
+  return (<div>{JSON.stringify(teams, null, 2)}</div>);
 }

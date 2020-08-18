@@ -1,40 +1,36 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "es5",
-    "lib": [
-      "es6",
-      "dom"
-    ],
-    "sourceMap": true,
+    "outDir": "out",
     "allowJs": true,
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "rootDir": "src",
+    "alwaysStrict": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["es6", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5",
+    "sourceMap": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "baseUrl": ".",
+    "baseUrl": "",
     "paths": {
-      "@components": [ "components/index.tsx" ],
-      "@lib": [ "lib/index.tsx" ]
-    },
-    "skipLibCheck": true,
-    "strict": false,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true
+      "Interfaces": ["./interfaces/index.tsx"],
+      "Components": ["./components/index.tsx"],
+      "Lib": ["./lib/index.tsx"]
+    }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
   "exclude": [
     "node_modules",
     "build",
@@ -43,5 +39,9 @@
     "webpack",
     "jest",
     "src/setupTests.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

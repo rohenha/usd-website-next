@@ -1,29 +1,26 @@
-import { queryContent } from "@lib";
+import { queryContent } from "Lib";
+import { GetStaticProps } from "next";
+import { IHomePage } from "Interfaces";
 
-
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
     const query = `query HomePage {
         allTeams(filter: {_status: {eq: published}}) {
             name
-            category {
-                name
-            }
-            managers {
-                name
-                surname
-            }
+            slug
         }
     }`;
 
     const data = await queryContent(query, 10);
     return {
         props: {
-            data
+            teams: data.allTeams
         }
     };
 
 }
 
-export default function Home({ data, paths }: { data: any, paths: any }) {
-    return (<div><p>{JSON.stringify(data, null, 2)}</p></div>);
+export default function Home({ teams }: IHomePage) {
+    return (
+        <div><p>{JSON.stringify(teams, null, 2)}</p></div>
+    );
 }

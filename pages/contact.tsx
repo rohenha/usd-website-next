@@ -1,9 +1,13 @@
-import { queryContent } from "@lib";
+import { queryContent } from "Lib";
+import { GetStaticProps } from "next";
+import { IContactPage } from "Interfaces";
 
-
-
-export async function getStaticProps() {
-    const CONTACT_QUERY = `query ContactPage {
+export const getStaticProps: GetStaticProps = async () => {
+    const query = `query ContactPage {
+        allTeams(filter: {_status: {eq: published}}) {
+            name
+            slug
+        }
         contact {
             email
             president {
@@ -24,15 +28,16 @@ export async function getStaticProps() {
             }
         }
     }`;
-    const data = await queryContent(CONTACT_QUERY, 10);
+    const data = await queryContent(query, 10);
     return {
         props: {
-            data
+            contact: data.contact,
+            teams: data.allTeams
         }
     };
 
 }
 
-export default function Contact({ data }: { data: any }) {
-    return <div>{JSON.stringify(data, null, 2)}</div>;
+export default function Contact({ contact }: IContactPage) {
+    return <div>{JSON.stringify(contact, null, 2)}</div>;
 }

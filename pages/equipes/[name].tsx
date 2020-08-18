@@ -1,8 +1,15 @@
-import { queryContent } from "@lib";
+import { queryContent } from "Lib";
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
+import { IEquipePage } from "Interfaces";
 
-export async function getStaticProps({ params }) {
+
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
     const query = `query HomePage {
-        team(filter: {_status: {eq: published}, slug: {eq: "` + params.name + `"}}) {
+        allTeams(filter: {_status: {eq: published}}) {
+            name
+            slug
+        }
+        team(filter: {_status: {eq: published}, slug: {eq: "` + ctx.params?.name + `"}}) {
             name
             category {
                 name
@@ -13,17 +20,16 @@ export async function getStaticProps({ params }) {
             }
         }
     }`;
-
     const data = await queryContent(query, 10);
     return {
         props: {
-            data,
-            params
+            team: data.team,
+            teams: data.allTeams
         }
     };
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     const query = `query Teams {
         allTeams(filter: {_status: {eq: published}}) {
             slug
@@ -32,9 +38,8 @@ export async function getStaticPaths() {
             }
         }
     }`;
-
     const data = await queryContent(query, 10);
-    const teams = data.allTeams.map(team => {
+    const teams = data.allTeams.map((team: any) => {
         return {
             params: {
                 category: team.category.slug,
@@ -45,6 +50,6 @@ export async function getStaticPaths() {
     return { paths: teams, fallback: false };
 }
 
-export default function Equipe({ data, params }: { data: any, params: any }) {
-    return (<div><p>{JSON.stringify(data, null, 2)}</p><p>{JSON.stringify(params, null, 2)}</p></div>);
+export default function Equipe({ team }: IEquipePage) {
+    return (<div><p>{JSON.stringify(team, null, 2)}</p></div>);
 }

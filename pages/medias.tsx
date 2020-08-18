@@ -1,17 +1,24 @@
-import { queryContent } from "@lib";
+import { queryContent } from "Lib";
+import { GetStaticProps } from "next";
+import { IMediasPage } from "Interfaces";
 
-export async function getStaticProps() {
+
+
+export const getStaticProps: GetStaticProps = async () => {
     const query = `query MediasPage {
-        team {
+        allTeams(filter: {_status: {eq: published}}) {
             name
+            slug
         }
     }`;
     const data = await queryContent(query, 10);
     return {
-        props: { data }
+        props: { 
+            teams: data.allTeams
+        }
     };
 }
 
-export default function Medias({ data }: { data: any }) {
-    return <div>{JSON.stringify(data, null, 2)}</div>;
+export default function Medias({ teams }: IMediasPage) {
+    return <div>{JSON.stringify(teams, null, 2)}</div>;
 }
