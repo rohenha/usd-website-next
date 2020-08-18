@@ -1,4 +1,4 @@
-import { getAllTeamSlug, queryContent } from "@lib";
+import { queryContent } from "@lib";
 
 export async function getStaticProps({ params }) {
     const query = `query HomePage {
