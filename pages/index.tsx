@@ -1,4 +1,4 @@
-import { getAllTeamSlug, queryContent } from "@lib";
+import { queryContent } from "@lib";
 
 
 export async function getStaticProps() {
@@ -16,16 +16,14 @@ export async function getStaticProps() {
     }`;
 
     const data = await queryContent(query, 10);
-    const paths = await getAllTeamSlug();
     return {
         props: {
-            data,
-            paths
+            data
         }
     };
 
 }
 
 export default function Home({ data, paths }: { data: any, paths: any }) {
-    return (<div><p>{JSON.stringify(data, null, 2)}</p><p>{JSON.stringify(paths, null, 2)}</p></div>);
+    return (<div><p>{JSON.stringify(data, null, 2)}</p></div>);
 }
