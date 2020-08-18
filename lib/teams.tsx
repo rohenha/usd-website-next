@@ -1,5 +1,4 @@
 import { queryContent } from "@lib";
-import slugify from "slugify";
 
 export async function getAllTeamSlug() {
     const query = `query Teams {
