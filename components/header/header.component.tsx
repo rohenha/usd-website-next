@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from "next/link";
-import { IHeaderComponentProps, IHeaderComponentState, ITeamMenu, ICategory } from "Interfaces";
+import { IHeaderComponentProps, IHeaderComponentState, ITeamMenu } from "Interfaces";
 
 import style from './header.module.sass'
 
