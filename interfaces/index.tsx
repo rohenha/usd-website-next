@@ -3,4 +3,7 @@ export * from './pages.interface';
 export * from './header.interface';
 export * from './layout.interface';
 export * from './datocms.interface';
+export * from './image.interface';
+export * from './products.interface';
+export * from './managers.interface';
 export * from './categories.interface';

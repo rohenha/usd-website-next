@@ -1,3 +1,2 @@
-export * from './apiquery';
-export * from './datocms';
-export * from './datamenu';
+export * from './api';
+export * from './facebook';

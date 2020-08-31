@@ -18,9 +18,10 @@
     "noUnusedLocals": true,
     "baseUrl": "./",
     "paths": {
-      "Interfaces": [ "/interfaces/index.tsx" ],
-      "Components": [ "/components/index.tsx" ],
-      "Lib": [ "/lib/index.tsx" ]
+      "Interfaces": [ "./interfaces/index.tsx" ],
+      "Components": [ "./components/index.tsx" ],
+      "Lib": [ "./lib/index.tsx" ],
+      "Queries": ["./queries/index.tsx"]
     }
   },
   "include": [

@@ -28,7 +28,8 @@
     "paths": {
       "Interfaces": ["./interfaces/index.tsx"],
       "Components": ["./components/index.tsx"],
-      "Lib": ["./lib/index.tsx"]
+      "Lib": ["./lib/index.tsx"],
+      "Queries": ["./queries/index.tsx"]
     }
   },
   "exclude": [

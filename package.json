@@ -29,6 +29,7 @@
     "react-datocms": "^1.2.6",
     "react-dom": "16.13.1",
     "sass": "^1.26.10",
+    "shuffle-array": "^1.0.1",
     "slugify": "^1.4.5"
   },
   "devDependencies": {

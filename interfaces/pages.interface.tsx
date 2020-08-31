@@ -1,49 +1,71 @@
-import { ITeamMenu, ITeam } from 'Interfaces';
+import { IImage, IManager, IProduct, ITeamMenu, ITeam } from 'Interfaces';
+
+export interface IPage {
+    title: string,
+    description: string
+}
+
+export interface IPageCurrent extends IPage {
+    seo: {
+        title: string,
+        description: string
+    },
+    cover: IImage
+}
+
+export interface IContact extends IPageCurrent {
+    email: string,
+    coversStade: IImage,
+    president: IManager,
+    presidentJeunes: IManager,
+    adresse: {
+        latitude: number,
+        longitude: number
+    }
+}
+
+export interface IShop extends IPageCurrent {
+    shopFile: {
+        url: string
+    }
+}
 
 export interface IHomePage {
+    pages: {
+        home: IPageCurrent,
+        teams: IPage,
+        shop: IPage
+    },
+    products: IProduct[],
     teams: ITeamMenu[]
 }
 
 export interface IMediasPage {
-    teams: ITeamMenu[]
+    page: IPageCurrent
 }
 
 export interface IMonClubPage {
-    teams: ITeamMenu[]
+    convocations: {
+        file: {
+            url: string
+        },
+        updatedAt: string
+    }[],
+    page: IPageCurrent
 }
 
 export interface IEquipesPage {
-    teams: ITeamMenu[]
+    page: IPageCurrent,
+    teams: ITeam[]
 }
 
 export interface IContactPage {
-    contact: {
-        email: string,
-        president: {
-            email: string,
-            name: string,
-            phone: string,
-            surname: string
-        },
-        presidentJeunes: {
-            email: string,
-            name: string,
-            surname: string,
-            phone: string
-        },
-        adresse: {
-            latitude: number,
-            longitude: number
-        }
-    }
+    page: IContact
 }
 
 export interface IBoutiquePage {
-    products: {
-        name: string,
-        price: number,
-        size: string,
-    }[]
+    page: IShop,
+    products: IProduct[]
 }
 
 export interface IEquipePage {

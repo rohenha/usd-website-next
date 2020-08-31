@@ -4,15 +4,43 @@ import { IContactPage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
     const query = `query ContactPage {
-        allTeams(filter: {_status: {eq: published}}) {
-            name
-            slug
-            category {
-                id
+        contactPage {
+            title
+            seo {
+                title
+                description
             }
-        }
-        contact {
+            cover {
+                responsiveImage {
+                    srcSet
+                    webpSrcSet
+                    sizes
+                    src
+                    width
+                    height
+                    aspectRatio
+                    alt
+                    title
+                    bgColor
+                    base64
+                }
+            }
             email
+            coversStade {
+                responsiveImage {
+                    srcSet
+                    webpSrcSet
+                    sizes
+                    src
+                    width
+                    height
+                    aspectRatio
+                    alt
+                    title
+                    bgColor
+                    base64
+                }
+              }
             president {
                 email
                 name
@@ -31,18 +59,17 @@ export const getStaticProps: GetStaticProps = async () => {
             }
         }
     }`;
-    const data = await queryContent(query, 10);
+    const data = await queryContent(query, { limit: 10 });
     const menu = await getDataMenu();
     return {
         props: {
             menu,
-            contact: data.contact,
-            teams: data.allTeams
+            page: data.contactPage
         }
     };
 
-}
+};
 
-export default function Contact({ contact }: IContactPage) {
-    return <div>{JSON.stringify(contact, null, 2)}</div>;
-}
+export default function Contact({ page }: IContactPage) {
+    return <div>{JSON.stringify(page, null, 2)}</div>;
+};

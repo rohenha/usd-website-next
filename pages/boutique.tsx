@@ -2,34 +2,72 @@ import { getDataMenu, queryContent } from "Lib";
 import { GetStaticProps } from "next";
 import { IBoutiquePage } from "Interfaces";
 
-
 export const getStaticProps: GetStaticProps = async () => {
     const query = `query BoutiquePage {
-        allTeams(filter: {_status: {eq: published}}) {
-            name
-            slug
-            category {
-                id
-            }
-        }
-        allProduits {
+        allProducts(filter: {_status: {eq: published}}) {
             name
             price
-            size
+            sizes {
+                name
+            }
+            cover {
+                responsiveImage {
+                    srcSet
+                    webpSrcSet
+                    sizes
+                    src
+                    width
+                    height
+                    aspectRatio
+                    alt
+                    title
+                    bgColor
+                    base64
+                }
+            }
+        }
+        shopPage {
+            title
+            seo {
+                title
+                description
+            }
+            shopFile {
+                url
+            }
+            cover {
+                responsiveImage {
+                    srcSet
+                    webpSrcSet
+                    sizes
+                    src
+                    width
+                    height
+                    aspectRatio
+                    alt
+                    title
+                    bgColor
+                    base64
+                }
+            }
         }
     }`;
-    const data = await queryContent(query, 10);
+    const data = await queryContent(query, { limit: 10 });
     const menu = await getDataMenu();
     return {
         props: {
             menu,
-            products: data.allProduits,
-            teams: data.allTeams
+            page: data.shopPage,
+            products: data.allProducts,
         }
     };
   
-}
+};
 
-export default function Boutique({ products }: IBoutiquePage) {
-    return <div>{JSON.stringify(products, null, 2)}</div>;
-}
+export default function Boutique({ page, products }: IBoutiquePage) {
+    return (<div>
+        <p>{JSON.stringify(products, null, 2)}</p>
+        <br/>
+        <p>{JSON.stringify(page, null, 2)}</p>
+    </div>);
+};
