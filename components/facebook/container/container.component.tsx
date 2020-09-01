@@ -18,7 +18,7 @@ export class FacebookContainerComponent extends React.Component<IFacebookContain
 
     componentDidMount = () => {
         const graph = getFacebookGraph();
-        graph.get("unionsportivedionysienne", { fields: "posts{message}" }, (_err: any, res: any) => {
+        graph.get("unionsportivedionysienne", { fields: "posts{message,full_picture}" }, (_err: any, res: any) => {
             this.setState({
                 posts: res.posts.data
             });
