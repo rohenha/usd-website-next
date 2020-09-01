@@ -1,22 +1,29 @@
-import { getDataMenu, queryContent } from "Lib";
+import { coverFragment, getDataMenu, managerFragment, queryContent, responsiveImageFragment, teamFragment } from "Lib";
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from "next";
 import { IEquipePage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-    const query = `query HomePage {
+    const query = `query {
         team(filter: {_status: {eq: published}, slug: {eq: "` + ctx.params?.name + `"}}) {
-            name
-            category {
-                name
+            ...teamFragment
+            cover {
+                ...coverFragment
+            }
+            manager {
+                ...managerFragment
             }
             managers {
-                name
-                surname
+                ...managerFragment
             }
         }
-    }`;
+    }
+    ${coverFragment}
+    ${managerFragment}
+    ${teamFragment}
+    ${responsiveImageFragment}
+    `;
     const data = await queryContent(query, { limit: 10 });
-    const menu = await getDataMenu();
+    const menu = await getDataMenu('team(filter: {_status: {eq: published}, slug: {eq: "' + ctx.params?.name + '"}})');
     return {
         props: {
             menu,
@@ -26,7 +33,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const query = `query Teams {
+    const query = `query {
         allTeams(filter: {_status: {eq: published}}) {
             slug
             category {

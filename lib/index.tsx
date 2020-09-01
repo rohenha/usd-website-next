@@ -1,2 +1,2 @@
-export * from './api';
+export * from './datocms';
 export * from './facebook';

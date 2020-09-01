@@ -1,4 +1,5 @@
 const withSass = require('@zeit/next-sass');
+const sitemap = require('nextjs-sitemap-generator');
 
 module.exports = withSass({
     env: {
@@ -8,6 +9,17 @@ module.exports = withSass({
     target: 'serverless',
     experimental: {
         jsconfigPaths: true,
-    }
+    },
+    exportPathMap: function () {
+        return {
+          '/': { page: '/' },
+        }
+      }
+});
+
+sitemap({  
+    baseUrl: 'https://www.us-dionysienne.fr',  
+    pagesDirectory: __dirname + "/pages",  
+    targetDirectory : 'static/'  
 });
 

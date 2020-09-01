@@ -1,66 +1,38 @@
-import { getDataMenu, queryContent } from "Lib";
+import { coverFragment, getDataMenu, managerFragment, queryContent, responsiveImageFragment } from "Lib";
 import { GetStaticProps } from "next";
 import { IContactPage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const query = `query ContactPage {
+    const query = `query {
         contactPage {
             title
-            seo {
-                title
-                description
-            }
             cover {
-                responsiveImage {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    bgColor
-                    base64
-                }
+                ...coverFragment
             }
             email
             coversStade {
                 responsiveImage {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    bgColor
-                    base64
+                    ...responsiveImageFragment
                 }
-              }
+            }
             president {
-                email
-                name
-                phone
-                surname
+                ...managerFragment
             }
             presidentJeunes {
-                email
-                name
-                surname
-                phone
+                ...managerFragment
             }
             adresse {
                 latitude
                 longitude
             }
         }
-    }`;
+    }
+    ${coverFragment}
+    ${managerFragment}
+    ${responsiveImageFragment}
+    `;
     const data = await queryContent(query, { limit: 10 });
-    const menu = await getDataMenu();
+    const menu = await getDataMenu('contactPage');
     return {
         props: {
             menu,

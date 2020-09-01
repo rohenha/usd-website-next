@@ -1,59 +1,32 @@
-import { getDataMenu, queryContent } from "Lib";
+import { getDataMenu, productFragment, queryContent, responsiveImageFragment } from "Lib";
 import { GetStaticProps } from "next";
 import { IBoutiquePage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const query = `query BoutiquePage {
+    const query = `query {
         allProducts(filter: {_status: {eq: published}}) {
-            name
-            price
+            ...productFragment
             sizes {
                 name
-            }
-            cover {
-                responsiveImage {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    bgColor
-                    base64
-                }
             }
         }
         shopPage {
             title
-            seo {
-                title
-                description
-            }
             shopFile {
                 url
             }
             cover {
                 responsiveImage {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    bgColor
-                    base64
+                    ...responsiveImageFragment
                 }
             }
         }
-    }`;
+    }
+    ${productFragment}
+    ${responsiveImageFragment}
+    `;
     const data = await queryContent(query, { limit: 10 });
-    const menu = await getDataMenu();
+    const menu = await getDataMenu('shopPage');
     return {
         props: {
             menu,

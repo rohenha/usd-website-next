@@ -1,46 +1,38 @@
-import { getDataMenu, queryContent } from "Lib";
+import { coverFragment, getDataMenu, queryContent, responsiveImageFragment, teamFragment } from "Lib";
 import { GetStaticProps } from "next";
 import { IEquipesPage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const query = `query TeamsPage {
+    const query = `query {
         allTeams(filter: {_status: {eq: published}}) {
-            name
-            slug
+            ...teamFragment
             category {
                 name
                 id
             }
-            managers {
+            cover {
+                responsiveImage {
+                    ...responsiveImageFragment
+                }
+            }
+            manager {
                 name
                 surname
             }
         }
         teamsPage {
             title
-            seo {
-                title
-                description
-            }
             cover {
-                responsiveImage {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    bgColor
-                    base64
-                }
+                ...coverFragment
             }
         }
-    }`;
+    }
+    ${coverFragment}
+    ${teamFragment}
+    ${responsiveImageFragment}
+    `;
     const data = await queryContent(query, { limit: 10 });
-    const menu = await getDataMenu();
+    const menu = await getDataMenu('teamsPage');
     return {
         props: {
             menu,

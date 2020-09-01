@@ -1,34 +1,21 @@
-import { getDataMenu, queryContent } from "Lib";
+import { coverFragment, getDataMenu, queryContent, responsiveImageFragment } from "Lib";
 import { GetStaticProps } from "next";
 import { IMediasPage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const query = `query MediasPage {
+    const query = `query {
         mediasPage {
             title
-            seo {
-                title
-                description
-            }
             cover {
-                responsiveImage {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    bgColor
-                    base64
-                }
+                ...coverFragment
             }
         }
-    }`;
+    }
+    ${coverFragment}
+    ${responsiveImageFragment}
+    `;
     const data = await queryContent(query, { limit: 10 });
-    const menu = await getDataMenu();
+    const menu = await getDataMenu('mediasPage');
     return {
         props: { 
             menu,

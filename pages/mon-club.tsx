@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import { IMonClubPage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const query = `query ClubPage {
+    const query = `query {
         allConvocations(filter: {_status: {eq: published}}, orderBy: _updatedAt_DESC) {
             file {
                 url
@@ -12,14 +12,10 @@ export const getStaticProps: GetStaticProps = async () => {
         }
         myClubPage {
             title
-            seo {
-                title
-                description
-            }
         }
     }`;
     const data = await queryContent(query, { limit: 10 });
-    const menu = await getDataMenu();
+    const menu = await getDataMenu('myClubPage');
     return {
         props: {
             convocations: data.allConvocations,
