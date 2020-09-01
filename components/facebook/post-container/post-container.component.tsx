@@ -20,7 +20,7 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
     private getPosts = () => {
         getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url}").then((res: any) => {
             this.setState({
-                posts: [...this.state.posts, ...res]
+                posts: [...this.state.posts, ...res.posts.data]
             });
         });
     };

@@ -18,9 +18,10 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
     };
 
     private getMedias = () => {
-        getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url}").then((res: any) => {
+        getFacebookContent("albums.limit(" + this.nbrPosts + ").offset(" + this.offset + "){photos{webp_images}}").then((res: any) => {
+            console.log(res.albums.data);
             this.setState({
-                medias: [...this.state.medias, ...res]
+                medias: [...this.state.medias, ...res.albums.data]
             });
         });
     };
@@ -35,9 +36,13 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
     public render(): React.ReactElement<any> {
         return (
             <div className="fb_container">
-                {this.state.medias.map((post: any) => (
-                    <FacebookMediaComponent media={post} key={post.id} />
-                ))}
+                {this.state.medias.map((medias: any) => {
+                    if (medias.photos) {
+                        return medias.photos.data.map((photo: any) => (
+                            <FacebookMediaComponent media={photo} key={photo.id} />
+                        )) 
+                    }
+                })}
                 <button onClick={this.addMoreMedias}>Charger plus de médias</button>
             </div>
         );
