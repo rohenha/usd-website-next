@@ -7,7 +7,7 @@ import {
     teamFragment
 } from "Lib";
 import {
-    FacebookContainerComponent
+    FacebookPostsContainerComponent
 } from 'Components';
 import * as React from 'react';
 import { GetStaticProps } from "next";
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
 export default function Home({ pages, products, teams }: IHomePage) {
 
     return (<React.Fragment>
-        <FacebookContainerComponent/>
+        <FacebookPostsContainerComponent/>
         {/* <Image data={pages.home.cover.responsiveImage} /> */}
         <p>Teams : {JSON.stringify(teams, null, 2)}</p>
         <br/>

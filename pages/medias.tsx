@@ -1,6 +1,7 @@
 import { coverFragment, getDataMenu, queryContent, responsiveImageFragment } from "Lib";
 import { GetStaticProps } from "next";
 import { IMediasPage } from "Interfaces";
+import { FacebookMediasContainerComponent } from "Components";
 
 export const getStaticProps: GetStaticProps = async () => {
     const query = `query {
@@ -25,5 +26,8 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Medias({ page }: IMediasPage) {
-    return (<div>{JSON.stringify(page, null, 2)}</div>);
+    return (<div>
+        <FacebookMediasContainerComponent/>
+        <p>{JSON.stringify(page, null, 2)}</p>
+    </div>);
 };
