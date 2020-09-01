@@ -4,7 +4,6 @@ import {
     productFragment, 
     queryContent, 
     responsiveImageFragment,
-    queryFacebookContent,
     teamFragment
 } from "Lib";
 import {
