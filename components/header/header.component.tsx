@@ -12,6 +12,7 @@ export function HeaderComponent({ menu }: IHeaderComponentProps) {
     return (
         <React.Fragment>
             <Head>
+                {/* <html lang="fr" /> */}
                 {renderMetaTags(menu.site.favicon)}
                 <title>{menu.seo.title !== "" ? menu.seo.title : menu.site.globalSeo.fallbackSeo.title}</title>
                 <meta name="description" content={menu.seo.description !== "" ? menu.seo.description : menu.site.globalSeo.fallbackSeo.description} />

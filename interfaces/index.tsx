@@ -7,3 +7,4 @@ export * from './image.interface';
 export * from './products.interface';
 export * from './managers.interface';
 export * from './categories.interface';
+export * from './facebook.interface';

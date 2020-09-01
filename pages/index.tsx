@@ -1,6 +1,18 @@
-import { coverFragment, getDataMenu, productFragment, responsiveImageFragment, queryContent, teamFragment } from "Lib";
+import { 
+    coverFragment,
+    getDataMenu, 
+    productFragment, 
+    queryContent, 
+    responsiveImageFragment,
+    queryFacebookContent,
+    teamFragment
+} from "Lib";
+import {
+    FacebookContainerComponent
+} from 'Components';
+import * as React from 'react';
 import { GetStaticProps } from "next";
-import { Image } from "react-datocms";
+// import { Image } from "react-datocms";
 import { IHomePage } from "Interfaces";
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -48,12 +60,14 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Home({ pages, products, teams }: IHomePage) {
-    return (<div>
-        <Image data={pages.home.cover.responsiveImage} />
+
+    return (<React.Fragment>
+        <FacebookContainerComponent/>
+        {/* <Image data={pages.home.cover.responsiveImage} /> */}
         <p>Teams : {JSON.stringify(teams, null, 2)}</p>
         <br/>
         <p>Pages : {JSON.stringify(pages, null, 2)}</p>
         <br/>
         <p>Produits : {JSON.stringify(products, null, 2)}</p>
-    </div>);
+    </React.Fragment>);
 };
