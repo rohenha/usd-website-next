@@ -9,12 +9,7 @@ module.exports = withSass({
     target: 'serverless',
     experimental: {
         jsconfigPaths: true,
-    },
-    exportPathMap: function () {
-        return {
-          '/': { page: '/' },
-        }
-      }
+    }
 });
 
 sitemap({  
