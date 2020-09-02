@@ -4,6 +4,7 @@ import { renderMetaTags } from "react-datocms";
 import { useRouter } from 'next/router'
 import Head from "next/head";
 import { IHeaderComponentProps, ITeamMenu } from "Interfaces";
+import { Container } from 'react-bootstrap';
 
 import style from './header.module.sass'
 
@@ -32,29 +33,29 @@ export function HeaderComponent({ menu }: IHeaderComponentProps) {
                 <meta name="twitter:creator" content="Romain Breton" />
             </Head>
             <header className={style.header}>
-                <div className="container">
+                <Container>
                     <nav>
                         <Link href="/"><a><img src={menu.site.logo.url} alt="" title={menu.site.globalSeo.siteName} /></a></Link>
                         <ul>
                             <li>
-                                <Link href="/equipes"><a>Équipes</a></Link>
+                                <Link href="/equipes"><a className="text_menu">Équipes</a></Link>
                                 <ul>
                                     {menu.teams.map((team: ITeamMenu, index: number) => (
                                         <li key={index}>
                                             <Link href={"/equipes/" + team.slug}>
-                                                <a>{team.name}</a>
+                                                <a className="text_menu">{team.name}</a>
                                             </Link>
                                         </li>
                                     ))}
                                 </ul>
                             </li>
-                            <li><Link href="/medias"><a>Médias</a></Link></li>
-                            <li><Link href="/contact"><a>Contact</a></Link></li>
-                            <li><Link href="/boutique"><a>Boutique</a></Link></li>
-                            <li><Link href="/mon-club"><a>Mon club</a></Link></li>
+                            <li><Link href="/medias"><a className="text_menu">Médias</a></Link></li>
+                            <li><Link href="/contact"><a className="text_menu">Contact</a></Link></li>
+                            <li><Link href="/boutique"><a className="text_menu">Boutique</a></Link></li>
+                            <li><Link href="/mon-club"><a className="text_menu">Mon club</a></Link></li>
                         </ul>
                     </nav>
-                </div>
+                </Container>
             </header>
         </React.Fragment>
     );

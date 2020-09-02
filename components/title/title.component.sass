@@ -1,0 +1,14 @@
+.c_title
+    display: inline-block
+    position: relative
+    span
+        position: relative
+        z-index: 2
+    &::after
+        content: attr(data-title)
+        display: block
+        position: absolute
+        right: -20%
+        top: -30%
+        width: 100%
+        z-index: 1

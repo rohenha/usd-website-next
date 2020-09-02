@@ -10,7 +10,7 @@ options:
   max-warnings: 50
 # File Options
 files:
-  include: 'app/assets/stylesheets/**/*.s+(a|c)ss'
+  include: '**/*.s+(a|c)ss'
   ignore:
     - 'vendor/**/*.*'
 # Rule Configuration

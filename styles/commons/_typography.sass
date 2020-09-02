@@ -1,4 +1,103 @@
 html
-    color: $color-white
+    color: $color-5
     font-family: $font-regular
     font-size: $font-size-base + px
+
+h1,
+h2,
+h3,
+h4,
+.btn,
+.text_menu,
+.text_team
+    font-family: $font-title
+    text-transform: uppercase
+
+h1,
+h2,
+h3
+    font-weight: bold
+
+h1
+    color: $color-white
+    font-size: px2rem(100)
+    letter-spacing: ls2rem(7)
+    line-height: px2rem(100)
+
+    &::after
+        @supports (-webkit-text-stroke: 1px $color-3)
+            -webkit-text-fill-color: rgba($color-white, 0)
+            -webkit-text-stroke: 1px $color-3
+            color: rgba($color-white, 0)
+
+h2
+    color: $color-1
+    font-size: px2rem(50)
+    letter-spacing: ls2rem(3.5)
+    line-height: px2rem(60)
+
+    &::after
+        @supports (-webkit-text-stroke: 1px $color-5)
+            -webkit-text-fill-color: rgba($color-white, 0)
+            -webkit-text-stroke: 1px $color-5
+            color: rgba($color-white, 0)
+
+    &:not(:last-child)
+        margin-bottom: 30px
+
+h3
+    font-size: px2rem(40)
+    font-style: italic
+    letter-spacing: ls2rem(2.8)
+    line-height: px2rem(48)
+    @supports (-webkit-text-stroke: 1px $color-2)
+        -webkit-text-fill-color: rgba($color-white, 0)
+        -webkit-text-stroke: 1px $color-2
+        color: rgba($color-white, 0)
+
+    &.white
+        @supports (-webkit-text-stroke: 1px $color-white)
+            -webkit-text-fill-color: rgba($color-white, 0)
+            -webkit-text-stroke: 1px $color-white
+            color: rgba($color-white, 0)
+
+    &:not(:last-child)
+        margin-bottom: 30px
+
+h4
+    color: $color-2
+    font-size: px2rem(14)
+    line-height: px2rem(16)
+
+    &:not(:last-child)
+        margin-bottom: 10px
+
+p,
+a
+    line-height: px2rem(22)
+    &:not(:last-child)
+        margin-bottom: 20px
+
+a
+    color: $color-2
+    font-size: px2rem(16)
+    font-weight: bold
+    text-decoration: none
+
+.text
+    &_menu
+        font-size: px2rem(16)
+        font-weight: normal
+        letter-spacing: ls2rem(1.6)
+        line-height: px2rem(19)
+
+    &_team
+        font-size: px2rem(35)
+        font-weight: bold
+        letter-spacing: ls2rem(2.45)
+        line-height: px2rem(42)
+        @supports (-webkit-text-stroke: 1px $color-3)
+            -webkit-text-fill-color: rgba($color-white, 0)
+            -webkit-text-stroke: 1px $color-3
+            color: rgba($color-white, 0)
+
